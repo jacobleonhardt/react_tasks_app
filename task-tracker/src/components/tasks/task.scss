@@ -1,0 +1,10 @@
+.list {
+  &__task {
+    background-color: #eee;
+
+    &--reminder {
+      background-color: #eee;
+      border-left: 3px solid green;
+    }
+  }
+}
