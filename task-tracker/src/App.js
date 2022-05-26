@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 function App() {
 
+  const [toggleForm, setToggleForm] = useState(false)
   const [tasks, setTasks] = useState([{
     id: 1,
     text: "Doctor's Appointment",
@@ -30,8 +31,8 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
-      <Form onAdd={addTask} />
+      <Header displayForm={() => setToggleForm(true)} />
+      { toggleForm && <Form onAdd={addTask} displayForm={() => setToggleForm(false)} /> }
       { tasks.length > 0 ?
         <Tasks list={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
         : "No current tasks." }

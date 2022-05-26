@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const Form = ({ onAdd }) => {
+const Form = ({ onAdd, displayForm }) => {
 
   const [text, setText] = useState('')
   const [day, setDay] = useState('')
@@ -22,6 +22,7 @@ const Form = ({ onAdd }) => {
     setDay('')
     setTime('')
     setReminder(false)
+    displayForm()
   }
 
   return (
