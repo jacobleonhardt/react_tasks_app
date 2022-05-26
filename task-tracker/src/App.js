@@ -2,27 +2,47 @@ import './App.scss';
 import Header from './components/header/Header';
 import Form from './components/form/Form';
 import Tasks from './components/tasks/Tasks';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
 
   const [toggleForm, setToggleForm] = useState(false)
-  const [tasks, setTasks] = useState([{
-    id: 1,
-    text: "Doctor's Appointment",
-    day: "Feb 5th",
-    time: "2:30 PM",
-    reminder: true,
-  }])
+  const [tasks, setTasks] = useState([])
 
-  const addTask = (task) => {
-    const id = tasks.length + 1
-    const newTask = { id, ...task }
-    setTasks([...tasks, newTask])
+  useEffect(() => {
+    const getTasks = async () => {
+      const taskList = await fetchTasks()
+      setTasks(taskList);
+    }
+
+    getTasks()
+  }, [])
+
+  const fetchTasks = async () => {
+    const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+
+    return data
   }
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id))
+  const addTask = async (task) => {
+    const res = await fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(task)
+    })
+
+    const addNew = res.json()
+    setTasks([...tasks, addNew])
+  }
+
+  const deleteTask = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE',
+    }
+    )
   }
 
   const toggleReminder = (id) => {
