@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="container">
-      <Header displayForm={() => setToggleForm(true)} />
+      <Header displayForm={() => setToggleForm(!toggleForm)} displayButtonText={toggleForm}/>
       { toggleForm && <Form onAdd={addTask} displayForm={() => setToggleForm(false)} /> }
       { tasks.length > 0 ?
         <Tasks list={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>

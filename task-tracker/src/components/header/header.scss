@@ -8,9 +8,12 @@
   color: #fff;
 
   &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 100px;
+    min-height: 40px;
     max-height: 100px;
-    line-height: 40px;
     font-size: 21px;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;

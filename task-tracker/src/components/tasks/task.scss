@@ -1,10 +1,46 @@
 .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px;
+
   &__task {
     background-color: #eee;
+    border-left: 3px solid #eee;
+    min-width: 300px;
+    margin: 10px 0;
 
-    &--reminder {
+    &.reminder {
       background-color: #eee;
       border-left: 3px solid green;
+      min-width: 300px;
+    }
+
+    & > h3 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+
+      & svg {
+        color: #0047AB;
+
+        &:hover {
+          cursor: pointer;
+          color: #FF5733;
+          transition: .5s;
+        }
+      }
+    }
+
+    & > h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
     }
   }
 }
