@@ -80,7 +80,7 @@ function App() {
             { toggleForm && <Form onAdd={addTask} displayForm={() => setToggleForm(false)} /> }
             { tasks.length > 0 ?
               <Tasks list={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
-              : "No current tasks." }
+              : <span className='container__message'>No current tasks.</span> }
           </div>
         }/>
         <Route path="/about" element={<About />} />

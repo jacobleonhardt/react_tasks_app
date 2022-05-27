@@ -1,3 +1,4 @@
+import './footer.scss'
 import { Link } from "react-router-dom"
 
 const Footer = () => {
