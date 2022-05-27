@@ -1,0 +1,14 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px 10px 50px;
+
+  & > h1 {
+    font-family: 'Lobster Two', cursive;
+    font-weight: 400;
+    font-size: 32px;
+    color: #7393B3;
+  }
+}
