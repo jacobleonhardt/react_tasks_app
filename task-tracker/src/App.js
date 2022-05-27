@@ -2,7 +2,10 @@ import './App.scss';
 import Header from './components/header/Header';
 import Form from './components/form/Form';
 import Tasks from './components/tasks/Tasks';
+import About from './components/about/About';
+import Footer from './components/footer/Footer';
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
 
@@ -69,13 +72,21 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Header displayForm={() => setToggleForm(!toggleForm)} displayButtonText={toggleForm}/>
-      { toggleForm && <Form onAdd={addTask} displayForm={() => setToggleForm(false)} /> }
-      { tasks.length > 0 ?
-        <Tasks list={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
-        : "No current tasks." }
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          <div className="container">
+            <Header displayForm={() => setToggleForm(!toggleForm)} displayButtonText={toggleForm}/>
+            { toggleForm && <Form onAdd={addTask} displayForm={() => setToggleForm(false)} /> }
+            { tasks.length > 0 ?
+              <Tasks list={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
+              : "No current tasks." }
+          </div>
+        }/>
+        <Route path="/about" element={<About />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
